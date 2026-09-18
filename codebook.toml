@@ -1,0 +1,7 @@
+use_global = false
+
+dictionaries = [ "en_gb" ]
+
+ignore_paths = [ "LICENSE" ]
+
+words = ["sool"]
