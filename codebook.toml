@@ -1,7 +1,16 @@
+dictionaries = ["en_gb"]
+words = [
+    "Werror",
+    "Xlint",
+    "aosp",
+    "diffplug",
+    "errorprone",
+    "jspecify",
+    "ltgt",
+    "nullaway",
+    "reflow",
+    "sool",
+    "uber",
+]
+ignore_paths = ["LICENSE"]
 use_global = false
-
-dictionaries = [ "en_gb" ]
-
-ignore_paths = [ "LICENSE" ]
-
-words = ["sool"]
