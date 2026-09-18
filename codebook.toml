@@ -8,8 +8,10 @@ words = [
     "jspecify",
     "ltgt",
     "nullaway",
+    "palantir",
     "reflow",
     "sool",
+    "tokenise",
     "uber",
 ]
 ignore_paths = ["LICENSE"]

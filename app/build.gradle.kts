@@ -29,7 +29,7 @@ java {
 }
 
 application {
-    mainClass = "Main"
+    mainClass = "sool.Main"
 }
 
 tasks.withType<JavaCompile>().configureEach {
@@ -46,16 +46,19 @@ tasks.withType<JavaCompile>().configureEach {
         disable("AddNullMarkedToClass") // We have "AddNullMarkedToPackageInfo".
         disable("SystemOut")
         disable("DefaultPackage") // Only for the Main class
+        disable("VarWithPrimitive")
+        disable("Java8ApiChecker")
     }
 }
 
 spotless {
     java {
-        googleJavaFormat("1.36.1")
-            .aosp()
-            .reflowLongStrings()
-            .reorderImports(true)
+        palantirJavaFormat("2.98.0")
     }
+}
+
+tasks.named<JavaExec>("run") {
+    standardInput = System.`in`
 }
 
 tasks.named<Test>("test") {
