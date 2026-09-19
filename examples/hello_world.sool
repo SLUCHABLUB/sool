@@ -1,0 +1,1 @@
+let main = function() :os:stdout:print_line("Hello, World!");

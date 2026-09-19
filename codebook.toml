@@ -1,5 +1,6 @@
 dictionaries = ["en_gb"]
 words = [
+    "Peeker",
     "Werror",
     "Xlint",
     "aosp",
@@ -9,10 +10,15 @@ words = [
     "ltgt",
     "nullaway",
     "palantir",
+    "peekable",
     "reflow",
     "sool",
     "tokenise",
+    "traverser",
     "uber",
 ]
-ignore_paths = ["LICENSE","config/checkstyle/*"]
+ignore_paths = [
+    "LICENSE",
+    "config/checkstyle/*",
+]
 use_global = false

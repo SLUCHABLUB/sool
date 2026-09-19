@@ -5,36 +5,28 @@ import java.util.stream.Stream;
 
 public final class Lexer {
 
-    private final UnicodeScalarStream scalars;
-    private Cursor cursor = Cursor.START;
+    private final FileIterator scalars;
 
     public Lexer(String string) {
-        this.scalars = new UnicodeScalarStream(string);
-    }
-
-    private void skipNextScalar() {
-        var next = scalars.peekNext();
-
-        next.ifPresent(scalar -> cursor = cursor.movedBy(scalar));
+        this.scalars = new FileIterator(string);
     }
 
     private void skipWhitespace() {
         while (scalars.peekNext().map(UnicodeScalar::isWhitespace).orElse(false)) {
-            skipNextScalar();
+            scalars.skipNext();
         }
     }
 
     public Optional<Token> nextToken() {
         skipWhitespace();
 
-        return scalars.peekNext().flatMap(Token.Kind::fromUnicodeScalar).flatMap(tokenKind -> {
-            var string = scalars.takeWhile(tokenKind.characterFilter);
-
-            return tokenKind.parseToken(string);
-        });
+        return scalars.peekNext()
+                .map(Token.Kind::fromInitial)
+                .map(Token.Kind::parser)
+                .map(parser -> parser.parse(scalars));
     }
 
     public Stream<Token> toStream() {
-        return StreamUtilities.fromOptionSupplier(this::nextToken);
+        return Streams.fromOptionSupplier(this::nextToken);
     }
 }

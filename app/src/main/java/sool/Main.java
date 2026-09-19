@@ -14,6 +14,6 @@ public final class Main {
 
         var lexer = new Lexer(string);
 
-        System.out.println(lexer.toStream().map(token -> token.string).toList());
+        System.out.println(lexer.toStream().toList());
     }
 }
