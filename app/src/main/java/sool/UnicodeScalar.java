@@ -10,27 +10,27 @@ public final class UnicodeScalar {
         this.inner = inner;
     }
 
-    public static final Optional<UnicodeScalar> fromNumber(int number) {
+    public static Optional<UnicodeScalar> fromNumber(int number) {
         return Character.isDefined(number) ? Optional.of(new UnicodeScalar(number)) : Optional.empty();
     }
 
-    public final int bmpCount() {
+    public int bmpCount() {
         return Character.charCount(this.inner);
     }
 
-    public final boolean isAlphabetic() {
+    public boolean isAlphabetic() {
         return Character.isAlphabetic(this.inner);
     }
 
-    public final boolean isWhitespace() {
+    public boolean isWhitespace() {
         return Character.isWhitespace(this.inner);
     }
 
-    public final boolean isNewline() {
+    public boolean isNewline() {
         return this.inner == '\n';
     }
 
-    public final boolean isUnderscore() {
+    public boolean isUnderscore() {
         return this.inner == '_';
     }
 }

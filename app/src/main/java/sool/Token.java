@@ -6,23 +6,24 @@ import java.util.function.Predicate;
 
 public final class Token {
 
-    public static enum Kind {
+    public enum Kind {
         IDENTIFIER(scalar -> scalar.isAlphabetic() || scalar.isUnderscore());
 
         @SuppressWarnings("Immutable")
         public final Predicate<UnicodeScalar> characterFilter;
 
-        private Kind(Predicate<UnicodeScalar> characterFilter) {
+        Kind(Predicate<UnicodeScalar> characterFilter) {
             this.characterFilter = characterFilter;
         }
 
-        public static final Optional<Kind> fromUnicodeScalar(UnicodeScalar scalar) {
+        public static Optional<Kind> fromUnicodeScalar(UnicodeScalar scalar) {
             return Arrays.stream(Kind.values())
                     .filter(kind -> kind.characterFilter.test(scalar))
                     .findFirst();
         }
 
-        public final Optional<Token> parseToken(String string) {
+        @SuppressWarnings("HiddenField") // False positive
+        public Optional<Token> parseToken(String string) {
             if (!string.codePoints()
                     .allMatch(codePoint -> UnicodeScalar.fromNumber(codePoint)
                             .map(this.characterFilter::test)

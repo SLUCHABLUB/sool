@@ -2,7 +2,7 @@ package sool;
 
 import static java.util.Locale.ROOT;
 
-public final record Cursor(int line, int row) {
+public record Cursor(int line, int row) {
 
     public static final Cursor START = new Cursor(1, 1);
 

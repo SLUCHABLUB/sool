@@ -3,6 +3,7 @@ import net.ltgt.gradle.errorprone.errorprone
 plugins {
     application
 
+    checkstyle
     id("net.ltgt.errorprone") version "5.1.1"
     id("com.diffplug.spotless") version "8.10.2"
 }
@@ -49,6 +50,10 @@ tasks.withType<JavaCompile>().configureEach {
         disable("VarWithPrimitive")
         disable("Java8ApiChecker")
     }
+}
+
+checkstyle {
+    toolVersion = "14.1.0"
 }
 
 spotless {

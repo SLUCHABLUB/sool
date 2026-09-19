@@ -5,8 +5,8 @@ import java.util.stream.Stream;
 
 public final class Lexer {
 
-    final UnicodeScalarStream scalars;
-    Cursor cursor = Cursor.START;
+    private final UnicodeScalarStream scalars;
+    private Cursor cursor = Cursor.START;
 
     public Lexer(String string) {
         this.scalars = new UnicodeScalarStream(string);
@@ -24,7 +24,7 @@ public final class Lexer {
         }
     }
 
-    public final Optional<Token> nextToken() {
+    public Optional<Token> nextToken() {
         skipWhitespace();
 
         return scalars.peekNext().flatMap(Token.Kind::fromUnicodeScalar).flatMap(tokenKind -> {
@@ -34,7 +34,7 @@ public final class Lexer {
         });
     }
 
-    public final Stream<Token> toStream() {
+    public Stream<Token> toStream() {
         return StreamUtilities.fromOptionSupplier(this::nextToken);
     }
 }

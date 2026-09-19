@@ -14,5 +14,5 @@ words = [
     "tokenise",
     "uber",
 ]
-ignore_paths = ["LICENSE"]
+ignore_paths = ["LICENSE","config/checkstyle/*"]
 use_global = false
